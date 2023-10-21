@@ -241,7 +241,6 @@ Definition Exists x p := Not (Forall x (Not p)).
 
 End Formula.
 
-
 Notation "¬ q" := (Not q)(at level 5,right associativity).
 
 Notation "p → q" := (Contain p q)
@@ -369,7 +368,6 @@ Fixpoint Formula_bound_Ens (p: Formula) :=
   | Contain m n => (Formula_bound_Ens m) ∪ (Formula_bound_Ens n)
   | Forall x q => (Formula_bound_Ens q) ∪ [x]
   end.
-
 
 (* 语义 *)
 Section structure.
@@ -533,7 +531,7 @@ Qed.
 
 Definition valid_p p := forall M I v, satisfy_R M I v p.
 
-Lemma valid_formula_l : forall M m v x p, ~ x ∈ (Formula_free_Ens p) ->       agreement_f M v (value_v M v x m) p.
+Lemma valid_formula_l : forall M m v x p, ~ x ∈ (Formula_free_Ens p) -> agreement_f M v (value_v M v x m) p.
 Proof.
   intros. red. intros. 
   destruct(excluded(x0 = x)) eqn:E. rewrite e in H0. contradiction.
